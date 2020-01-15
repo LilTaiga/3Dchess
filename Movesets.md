@@ -8,7 +8,7 @@ A vector is a 3-int data structure and will be represented as **(X, Y, Z)**, whe
 - **Y** is a change in the Y dimension (Aka up and down).
 - **Z** is a change in the Z dimension (Aka forward and backward).
 
-Please note that vectors only represent a displacement in space, we will not consider the position inside the board yet, so some movesets may be illegal in certain situations.
+Please note that vectors only represent a displacement in space, they do not consider the position inside the board, so some movesets may be illegal under certain conditions.
 
 ## The pawn
 The pawn is the simplest piece in 2D chess, but thinking about it in 3D dimension can be a bit tricky.
@@ -33,7 +33,7 @@ The same concept will apply in our 3D chess project, the pawn can only capture e
 In our project, we will consider the latter (YUP, not only the pawn capture pieces diagonally, but it can also move diagonally in it's diagonally path, now imagine that in 4D x.x), so the vectors that represent the moveset of a pawn capturing an enemy piece can be described as: **(m, 1, n)**, where
 - **m** can range between -1 and 1.
 - **n** can range between -1 and 1.
-- Either m or n can not be 0.
+- Either **m** or **n** can not be 0.
 
 #### Conclusion
 With that, the possible movements for pawn are:
@@ -50,9 +50,49 @@ With that, the possible movements for pawn are:
   - (1, +-1, 0)
   - (1, +-1, 1)
   
-  
-  
-  
-  
-  
-  TODO: the rest of the pieces.
+## The king
+The king is a pretty straightforward piece, it can move only 1 space in any direction, so the moveset of the king looks like this in 3D chess: **(m, n, o)**, where:
+
+- **m** can range between -1 and 1.
+- **n** can range between -1 and 1.
+- **o** can range between -1 and 1.
+
+## The queen
+The queen can move infinitely in any direction in a straight line, either paralell or diagional, until its path gets obstructed or out of the board, in 3D chess, this concept can be generalized as such: **(k1, k2, k3)**, where:
+- **k1** is either a number **n** or 0.
+- **k2** is either a number **n** or 0.
+- **k3** is either a number **n** or 0.
+
+## The bishop
+The bishop can move infinitely in any diagonal direction, unless its path gets obstructed or out of board. A diagonal direction in our 3D chess will be defined as such: **(k1, k2, k3)**, where:
+- **k1** is either a number **n** or 0.
+- **k2** is either a number **n** or 0.
+- **k3** is either a number **n** or 0.
+- At least two must be non-zero.
+
+## The rook
+The rook can move infinitely in any parallel direction, unless its path gets obstructed or out or board. A parallel direction in our 3D chess will be defined as such:
+- **Any vector which follows the following pattern:**
+  - (n, 0, 0)
+  - (0, n, 0)
+  - (0, 0, n)
+**n** can range between 1 and infinity.
+
+## The knight
+The knight is the most interesting piece in chess, because of its move pattern which is pretty unique and its ability to jump over other pieces. 
+
+In 2D chess, the knight follows this pattern: **Move 2 spaces in one direction, and 1 space in the other direction**.
+
+In 2D, the "other direction" is pretty obvious which, since there are only axis of movement, but in 3D, there are more axis to consider, and we need to define what "other direction" is.
+
+We will define the "other direction" as: **Any perpendicular axis to the direction the knight came**.
+
+This way, after the knight moves 2 spaces into a axis, they have 2 axis to choose to where they want to move, this creates a pretty interesting moveset for the knight when draw.
+
+The vector moveset for the knight are the following:
+- (0, +-1, +-2)
+- (0, +-2, +-1)
+- (+-1, 0, +-2)
+- (+-1, +-2, 0)
+- (+-2, 0, +-1)
+- (+-2, +-1, 0)

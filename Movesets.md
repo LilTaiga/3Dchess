@@ -76,6 +76,7 @@ The rook can move infinitely in any parallel direction, unless its path gets obs
   - (n, 0, 0)
   - (0, n, 0)
   - (0, 0, n)
+
 **n** can range between 1 and infinity.
 
 ## The knight
